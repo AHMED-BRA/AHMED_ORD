@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OUD & ORO | Perfume Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-locked">
+  <section id="auth-section" class="auth-section">
+  <div class="auth-card">
+    <h1>OUD <span>&</span> ORO</h1>
+    <p id="auth-message">Welcome! Login or create your account.</p>
+
+    <form id="signup-form">
+      <h2>Create Account</h2>
+      <input id="signup-email" type="email" placeholder="Email address" required>
+      <input id="signup-password" type="password" placeholder="Password (at least 6 characters)" minlength="6" required>
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <div class="auth-divider">Already have an account?</div>
+
+    <form id="login-form">
+      <input id="login-email" type="email" placeholder="Email address" required>
+      <input id="login-password" type="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+
+    <button id="logout-button" type="button" hidden>Logout</button>
+    <p id="auth-status" role="status"></p>
+  </div>
+</section>
+  <header class="header">
+    <a class="logo" href="#">OUD <span>&</span> ORO</a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#products">Perfumes</a>
+      <a href="#about">About</a>
+      <a href="#checkout">Order</a>
+    </nav>
+    <a class="cart-link" href="#checkout">Bag (<span id="cart-count">0</span>)</a>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <p class="eyebrow">YOUR SIGNATURE SCENT</p>
+      <h1>A Fragrance<br>That Defines You.</h1>
+      <p>Discover elegant fragrances for every moment.</p>
+      <a class="btn" href="#products">Shop Collection →</a>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=900&q=85" alt="Luxury perfume bottle">
+    </div>
+  </section>
+
+  <section class="intro" id="about">
+    <p class="eyebrow">THE ART OF FRAGRANCE</p>
+    <h2>Find Your Signature Scent</h2>
+    <p>Explore our selected fragrance collection for men and women.</p>
+  </section>
+
+  <section class="products-section" id="products">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">OUR COLLECTION</p>
+        <h2>Featured Perfumes</h2>
+      </div>
+      <span>Cash on Delivery Available*</span>
+    </div>
+
+    <div class="products">
+      <article class="product">
+        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=700&q=80" alt="Amber perfume">
+        <div class="product-info">
+          <p class="category">WOODY · WARM</p>
+          <h3>Oud Royale</h3>
+          <p class="description">A rich, elegant woody fragrance.</p>
+          <div class="buy-row"><strong>Rs. 2,499</strong><button onclick="addToCart(0)">Add to Bag +</button></div>
+        </div>
+      </article>
+
+      <article class="product">
+        <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80" alt="Elegant perfume">
+        <div class="product-info">
+          <p class="category">FRESH · MODERN</p>
+          <h3>Velvet Bloom</h3>
+          <p class="description">A fresh and graceful everyday scent.</p>
+          <div class="buy-row"><strong>Rs. 1,999</strong><button onclick="addToCart(1)">Add to Bag +</button></div>
+        </div>
+      </article>
+
+      <article class="product">
+        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80" alt="Dark luxury perfume">
+        <div class="product-info">
+          <p class="category">SPICY · BOLD</p>
+          <h3>Noir Intense</h3>
+          <p class="description">A bold fragrance for special occasions.</p>
+          <div class="buy-row"><strong>Rs. 2,799</strong><button onclick="addToCart(2)">Add to Bag +</button></div>
+        </div>
+      </article>
+
+      <article class="product">
+        <img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=700&q=80" alt="Perfume bottle">
+        <div class="product-info">
+          <p class="category">FLORAL · SOFT</p>
+          <h3>Rose Essence</h3>
+          <p class="description">A delicate floral fragrance.</p>
+          <div class="buy-row"><strong>Rs. 1,799</strong><button onclick="addToCart(3)">Add to Bag +</button></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="checkout" id="checkout">
+    <div class="checkout-heading">
+      <p class="eyebrow">READY TO ORDER?</p>
+      <h2>Your Order Details</h2>
+      <p>اپنی معلومات درج کریں اور آرڈر WhatsApp پر بھیجیں۔</p>
+    </div>
+
+    <div class="order-layout">
+      <div class="order-summary">
+        <h3>Your Bag</h3>
+        <div id="cart-items">Your bag is empty.</div>
+        <div class="total">Total <strong id="cart-total">Rs. 0</strong></div>
+        <p class="small">Delivery charges may apply.</p>
+      </div>
+
+      <form id="checkout-form">
+        <label for="customer-name">Full Name *</label>
+        <input id="customer-name" name="name" required placeholder="Your full name">
+
+        <label for="customer-email">Email Address</label>
+        <input id="customer-email" name="email" type="email" placeholder="you@example.com">
+
+        <label for="customer-phone">Phone Number *</label>
+        <input id="customer-phone" name="phone" type="tel" required placeholder="03XXXXXXXXX">
+
+        <label for="customer-address">Complete Delivery Address *</label>
+        <textarea id="customer-address" name="address" required rows="3" placeholder="House, street, area, city"></textarea>
+
+        <label for="payment">Payment Method</label>
+        <select id="payment" name="payment">
+          <option value="Cash on Delivery">Cash on Delivery (COD)</option>
+        </select>
+
+        <button class="submit-btn" type="submit">Place Order on WhatsApp</button>
+        <p class="small">Please confirm product availability and delivery charges with the store.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <a class="logo" href="#">OUD <span>&</span> ORO</a>
+    <p>Discover your next favourite fragrance.</p>
+    <p>© 2026 OUD & ORO. Demo store — customise before selling.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script type="module" src="auth.js"></script>
+</body>
+</html>

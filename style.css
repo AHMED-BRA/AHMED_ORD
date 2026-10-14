@@ -258,3 +258,171 @@ body.auth-locked > :not(#auth-section) {
 .store-logout {
   margin-left: 10px;
 }
+/* ===== OUD & ORO PREMIUM BLACK & GOLD THEME ===== */
+
+:root {
+  --oro-gold: #d4af37;
+  --oro-light-gold: #f3df9b;
+  --oro-black: #0b0b0b;
+  --oro-dark: #151515;
+  --oro-card: #1b1b1b;
+  --oro-text: #f7f3e9;
+  --oro-muted: #c0b9aa;
+}
+
+/* Main website */
+body {
+  background: var(--oro-black);
+  color: var(--oro-text);
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: var(--oro-light-gold);
+  letter-spacing: 0.5px;
+}
+
+/* Header and navigation */
+header {
+  background: #090909;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 0 5px 24px rgba(0, 0, 0, 0.35);
+}
+
+header a,
+nav a {
+  color: var(--oro-text);
+  transition: color 0.25s ease;
+}
+
+header a:hover,
+nav a:hover {
+  color: var(--oro-gold);
+}
+
+/* Brand logo */
+.logo,
+header .logo,
+header .brand {
+  color: var(--oro-light-gold);
+}
+
+/* Hero section */
+.hero {
+  background-color: #111;
+  background-image:
+    radial-gradient(
+      ellipse at 75% 40%,
+      rgba(212, 175, 55, 0.13),
+      transparent 55%
+    );
+}
+
+.hero h1 {
+  color: var(--oro-light-gold);
+}
+
+.hero p {
+  color: var(--oro-muted);
+}
+
+/* Product cards */
+.product-card,
+.product {
+  background: linear-gradient(145deg, #202020, #111111);
+  color: var(--oro-text);
+  border: 1px solid rgba(212, 175, 55, 0.24);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.25s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.product-card:hover,
+.product:hover {
+  transform: translateY(-4px);
+  border-color: var(--oro-gold);
+  box-shadow: 0 10px 28px rgba(212, 175, 55, 0.10);
+}
+
+/* Product images */
+.product-card img,
+.product img {
+  max-width: 100%;
+}
+
+/* Buttons */
+button,
+.btn,
+button[type="submit"],
+input[type="submit"] {
+  background: linear-gradient(135deg, #f3df9b, #c49a28);
+  color: #111;
+  border: 1px solid var(--oro-gold);
+  border-radius: 6px;
+  font-weight: 700;
+  transition: filter 0.2s ease,
+              transform 0.2s ease;
+}
+
+button:hover,
+.btn:hover,
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* Forms */
+input,
+textarea,
+select {
+  max-width: 100%;
+  background: #171717;
+  color: var(--oro-text);
+  border: 1px solid #665629;
+  border-radius: 6px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--oro-gold);
+  outline-offset: 1px;
+}
+
+/* Links and separators */
+a {
+  transition: color 0.2s ease;
+}
+
+hr {
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+/* Cart and account panels */
+#cart-items,
+#checkout-form,
+#auth-section {
+  color: var(--oro-text);
+}
+
+/* Mobile-friendly spacing */
+img {
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .product-card,
+  .product {
+    border-radius: 9px;
+  }
+}
+
+/* ===== END PREMIUM THEME ===== */

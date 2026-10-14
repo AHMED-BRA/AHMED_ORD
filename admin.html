@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OUD & ORO Admin Dashboard</title>
+  <style>
+    body{font-family:Arial,sans-serif;background:#f5f1e9;color:#292016;padding:20px}
+    .panel{max-width:900px;margin:30px auto;background:white;padding:24px;border-radius:12px}
+    h1{color:#80552c}
+    button{padding:10px 18px;background:#80552c;color:white;border:0;border-radius:6px;cursor:pointer}
+    #status{margin:18px 0}
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h1>OUD & ORO Admin Dashboard</h1>
+    <p>Store Orders</p>
+    <p id="status">Checking admin access...</p>
+    <button id="refresh">Refresh Orders</button>
+    <div id="orders"></div>
+  </div>
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

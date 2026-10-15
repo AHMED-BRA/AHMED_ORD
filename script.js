@@ -154,7 +154,7 @@ document.getElementById("continue-purchase").onclick = () => {
 function addToCart(index) {
   cart[index] = (cart[index] || 0) + 1;
   renderCart();
-  openPurchasePanel();
+  updateProductQuantities();
 }
 
 function removeFromCart(index) {
@@ -162,7 +162,7 @@ function removeFromCart(index) {
   cart[index]--;
   if (cart[index] <= 0) delete cart[index];
   renderCart();
-  renderPurchasePanel();
+  updateProductQuantities();
 }
 
 function renderCart() {
@@ -267,3 +267,30 @@ document.getElementById("checkout-form").addEventListener("submit", function (ev
     "noopener,noreferrer"
   );
 });
+function updateProductQuantities() {
+  products.forEach((product, index) => {
+    const quantity = document.getElementById("qty-" + index);
+
+    if (quantity) {
+      quantity.textContent = cart[index] || 0;
+    }
+  });
+}
+
+function buyNow(index) {
+  if (!cart[index]) {
+    cart[index] = 1;
+  }
+
+  renderCart();
+  updateProductQuantities();
+
+  document.getElementById("checkout").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+  document.getElementById("customer-name").focus({
+    preventScroll: true
+  });
+}

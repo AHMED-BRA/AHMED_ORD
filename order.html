@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OUD & ORO | Place Your Order</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101010;color:#f5eee2;font-family:Arial,sans-serif;padding:25px}
+main{max-width:600px;margin:30px auto;background:#1d1b19;padding:25px;border:1px solid #b99862;border-radius:14px}
+h1{color:#c9a66b;text-align:center}
+label{display:block;margin-top:14px}
+input,textarea{width:100%;padding:12px;margin-top:6px;border:1px solid #9b835f;border-radius:6px;background:#111;color:white}
+button{width:100%;padding:14px;margin-top:20px;background:#c9a66b;color:#111;border:0;border-radius:7px;font-weight:bold;cursor:pointer}
+#summary{background:#111;padding:14px;border-radius:8px;line-height:1.8}
+</style>
+</head>
+<body>
+<main>
+<h1>OUD & ORO</h1>
+<h2>Your Order Details</h2>
+<div id="summary">Loading your selected perfume...</div>
+<form id="orderForm">
+<label>First Name *</label>
+<input name="first" required>
+<label>Last Name</label>
+<input name="last">
+<label>Phone Number *</label>
+<input name="phone" type="tel" required>
+<label>Email Address</label>
+<input name="email" type="email">
+<label>Complete Delivery Address *</label>
+<textarea name="address" rows="3" required></textarea>
+<button type="submit">Place Order on WhatsApp</button>
+</form>
+</main>
+<script>
+const params=new URLSearchParams(location.search);
+const products=[
+{name:"Oud Royale",price:2499},
+{name:"Velvet Bloom",price:1999},
+{name:"Noir Intense",price:2799},
+{name:"Rose Essence",price:1799}
+];
+const index=Number(params.get("product"));
+const qty=Math.max(1,Number(params.get("qty"))||1);
+const product=products[index];
+document.getElementById("summary").textContent=product
+?product.name+" × "+qty+" — Rs. "+(product.price*qty).toLocaleString("en-PK")
+:"Please return to the store and select Buy Now.";
+document.getElementById("orderForm").addEventListener("submit",function(e){
+e.preventDefault();
+if(!product){alert("Please select a perfume from the store first.");return;}
+const f=new FormData(this);
+const message=[
+"NEW OUD & ORO ORDER",
+"Perfume: "+product.name,
+"Quantity: "+qty,
+"Total: Rs. "+(product.price*qty).toLocaleString("en-PK"),
+"Payment: Cash on Delivery",
+"Name: "+f.get("first")+" "+f.get("last"),
+"Phone: "+f.get("phone"),
+"Email: "+(f.get("email")||"Not provided"),
+"Address: "+f.get("address")
+].join("\n");
+window.open("https://wa.me/923001234567?text="+encodeURIComponent(message),"_blank");
+});
+</script>
+</body>
+</html>

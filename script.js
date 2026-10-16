@@ -276,21 +276,3 @@ function updateProductQuantities() {
     }
   });
 }
-
-function buyNow(index) {
-  if (!cart[index]) {
-    cart[index] = 1;
-  }
-
-  renderCart();
-  updateProductQuantities();
-
-  document.getElementById("checkout").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-
-  document.getElementById("customer-name").focus({
-    preventScroll: true
-  });
-}

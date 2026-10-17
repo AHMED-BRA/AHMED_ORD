@@ -151,27 +151,76 @@ document.getElementById("continue-purchase").onclick = () => {
     block: "center"
   });
 };
+  function updateProductQuantities() {
+  products.forEach((product, index) => {
+    const qty = document.getElementById("qty-" + index);
+    if (qty) {
+      qty.textContent = cart[index] || 0;
+    }
+  });
+}
+
 function addToCart(index) {
   cart[index] = (cart[index] || 0) + 1;
   renderCart();
-  updateProductQuantities();
 }
 
 function removeFromCart(index) {
   if (!cart[index]) return;
+
   cart[index]--;
-  if (cart[index] <= 0) delete cart[index];
+
+  if (cart[index] <= 0) {
+    delete cart[index];
+  }
+
   renderCart();
-  updateProductQuantities();
 }
 
 function renderCart() {
   const items = document.getElementById("cart-items");
-  const count = Object.values(cart).reduce((a, b) => a + b, 0);
-  const total = products.reduce(
-    (sum, p, i) => sum + p.price * (cart[i] || 0), 0
+  const countElement = document.getElementById("cart-count");
+  const totalElement = document.getElementById("cart-total");
+
+  const count = Object.values(cart).reduce(
+    (sum, quantity) => sum + quantity, 0
   );
 
+  const total = products.reduce(
+    (sum, product, index) =>
+      sum + product.price * (cart[index] || 0), 0
+  );
+
+  if (countElement) countElement.textContent = count;
+
+  if (totalElement) {
+    totalElement.textContent =
+      "Rs. " + total.toLocaleString("en-PK");
+  }
+
+  if (items) {
+    items.replaceChildren();
+
+    if (count === 0) {
+      items.textContent = "Your bag is empty.";
+    } else {
+      products.forEach((product, index) => {
+        const quantity = cart[index] || 0;
+        if (!quantity) return;
+
+        const line = document.createElement("div");
+        line.textContent =
+          product.name + " × " + quantity +
+          " — Rs. " +
+          (product.price * quantity).toLocaleString("en-PK");
+
+        items.appendChild(line);
+      });
+    }
+  }
+
+  updateProductQuantities();
+}
   document.getElementById("cart-count").textContent = count;
   document.getElementById("cart-total").textContent =
     "Rs. " + total.toLocaleString("en-PK");

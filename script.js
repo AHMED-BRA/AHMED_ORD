@@ -276,3 +276,15 @@ function updateProductQuantities() {
     }
   });
 }
+function buyNow(index) {
+  const quantity = cart[index] || 0;
+
+  if (quantity < 1) {
+    alert("please add this perfume toyour bag firts.");
+    return;
+  }
+
+
+  window.location.href =
+  "order.html?product=" + index + "&qty=" + quantity;
+}

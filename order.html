@@ -135,10 +135,13 @@ minusBtn.addEventListener("click", function () {
     updateOrder();
   }
 });
-
-document.getElementById("orderForm").addEventListener("submit", function (e) {
+const orderform =
+document.getElementById("orderForm")
+;
+if (orderform)
+orderform.addEventListener("submit", function (e) {
   e.preventDefault();
-
+  
   if (!product) {
     alert("Please select a perfume from the store.");
     return;

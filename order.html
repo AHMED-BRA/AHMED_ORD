@@ -13,41 +13,46 @@ label{display:block;margin-top:14px}
 input,textarea{width:100%;padding:12px;margin-top:6px;border:1px solid #9b835f;border-radius:6px;background:#111;color:white}
 button{width:100%;padding:14px;margin-top:20px;background:#c9a66b;color:#111;border:0;border-radius:7px;font-weight:bold;cursor:pointer}
 #summary{background:#111;padding:14px;border-radius:8px;line-height:1.8}
-  .order-quantity > p {
-  margin-bottom: 14px;
-  font-size: 20px;
-  font-weight: 700;
+ /* FORCE ROUND QUANTITY BUTTONS */
+.quantity-control button,
+.quantity-buttons button,
+#minusBtn,
+#plusBtn,
+#minusbtn,
+#plusbtn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 58px !important;
+  height: 58px !important;
+  min-width: 58px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: #c9a66b !important;
+  color: #101010 !important;
+  font-size: 32px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
 }
+
 .quantity-control,
 .quantity-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-  margin: 62px auto 24px;
-}
-.quantity-control button,
-.quantity-buttons button {
-  width: 58px;
-  height: 58px;
-  min-width: 58px;
-  padding: 0;
-  margin: 0;
-  border: none;
-  border-radius: 50%;
-  background: #c9a66b;
-  color: #101010;
-  font-size: 32px;
-  font-weight: bold;
-  cursor: pointer;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 25px !important;
+  width: 100% !important;
 }
 
 #quantity {
-  min-width: 35px;
-  text-align: center;
-  font-size: 25px;
-  font-weight: bold;
-}
+  font-size: 25px !important;
+  font-weight: bold !important;
+  min-width: 35px !important;
+  text-align: center !important;
+} 
 </style>
 </head>
 <body>

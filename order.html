@@ -86,36 +86,84 @@ id=:totalAmount">Rs. 0</strong></p>
 </form>
 </main>
 <script>
-const params=new URLSearchParams(location.search);
-const products=[
-{name:"Oud Royale",price:2499},
-{name:"Velvet Bloom",price:1999},
-{name:"Noir Intense",price:2799},
-{name:"Rose Essence",price:1799}
+  const params = new URLSearchParams(location.search);
+
+const products = [
+  {name:"Oud Royale",price:2499},
+  {name:"Velvet Bloom",price:1999},
+  {name:"Noir Intense",price:2799},
+  {name:"Rose Essence",price:1799}
 ];
-const index=Number(params.get("product"));
-const qty=Math.max(1,Number(params.get("qty"))||1);
-const product=products[index];
-document.getElementById("summary").textContent=product
-?product.name+" × "+qty+" — Rs. "+(product.price*qty).toLocaleString("en-PK")
-:"Please return to the store and select Buy Now.";
-document.getElementById("orderForm").addEventListener("submit",function(e){
-e.preventDefault();
-if(!product){alert("Please select a perfume from the store first.");return;}
-const f=new FormData(this);
-const message=[
-"NEW OUD & ORO ORDER",
-"Perfume: "+product.name,
-"Quantity: "+qty,
-"Total: Rs. "+(product.price*qty).toLocaleString("en-PK"),
-"Payment: Cash on Delivery",
-"Name: "+f.get("first")+" "+f.get("last"),
-"Phone: "+f.get("phone"),
-"Email: "+(f.get("email")||"Not provided"),
-"Address: "+f.get("address")
-].join("\n");
-window.open("https://wa.me/923001234567?text="+encodeURIComponent(message),"_blank");
+
+const index = Number(params.get("product"));
+const product = products[index];
+let qty = Math.max(1, Number(params.get("qty")) || 1);
+
+const summary = document.getElementById("summary");
+const quantity = document.getElementById("quantity");
+const unitPrice = document.getElementById("unitPrice");
+const totalAmount = document.getElementById("totalAmount");
+const plusBtn = document.getElementById("plusBtn");
+const minusBtn = document.getElementById("minusBtn");
+
+function updateOrder() {
+  if (!product) {
+    summary.textContent = "Perfume not found. Return to the store.";
+    unitPrice.textContent = "Rs. 0";
+    totalAmount.textContent = "Rs. 0";
+    return;
+  }
+
+  quantity.textContent = qty;
+  unitPrice.textContent = "Rs. " + product.price.toLocaleString("en-PK");
+  totalAmount.textContent =
+    "Rs. " + (product.price * qty).toLocaleString("en-PK");
+  summary.textContent =
+    product.name + " × " + qty + " — Rs. " +
+    (product.price * qty).toLocaleString("en-PK");
+}
+
+plusBtn.addEventListener("click", function () {
+  qty++;
+  updateOrder();
 });
+
+minusBtn.addEventListener("click", function () {
+  if (qty > 1) {
+    qty--;
+    updateOrder();
+  }
+});
+
+document.getElementById("orderForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  if (!product) {
+    alert("Please select a perfume from the store.");
+    return;
+  }
+
+  const f = new FormData(this);
+  const message = [
+    "NEW OUD & ORO ORDER",
+    "Perfume: " + product.name,
+    "Quantity: " + qty,
+    "Price per perfume: Rs. " + product.price,
+    "Total: Rs. " + (product.price * qty),
+    "Payment: Cash on Delivery",
+    "Name: " + f.get("first") + " " + f.get("last"),
+    "Phone: " + f.get("phone"),
+    "Email: " + (f.get("email") || "Not provided"),
+    "Address: " + f.get("address")
+  ].join("\n");
+
+  window.open(
+    "https://wa.me/923001234567?text=" + encodeURIComponent(message),
+    "_blank"
+  );
+});
+
+updateOrder();
 </script>
 </body>
 </html>

@@ -96,9 +96,9 @@ button{width:100%;padding:14px;margin-top:20px;background:#c9a66b;color:#111;bor
 </div>
 <div class="price-box">
     <label for="unitPrice">price perfume</label>
-  <input id="unitprice" type="text" value="Rs. 2;499" readonly>
+  <input id="unitPrice" type="text" value="Rs. 2;499" readonly>
   <label for="totalAmount">Total Amount</label>
-  <input id="totalamount" type="text" value="Rs. 2,499" readonly>
+  <input id="totalAmount" type="text" value="Rs. 2,499" readonly>
 </div>
 <form id="orderForm">
 <label>First Name *</label>
@@ -144,9 +144,10 @@ function updateOrder() {
   }
 
   quantity.textContent = qty;
-  unitPrice.textContent = "Rs. " + product.price.toLocaleString("en-PK");
-  totalAmount.textContent =
-    "Rs. " + (product.price * qty).toLocaleString("en-PK");
+  unitPrice.value =
+   "Rs. " + product.price.toLocaleString("en-PK");
+  totalAmount.value =
+   "Rs. " + (product.price * qty).toLocaleString("en-PK");
   summary.textContent =
     product.name + " × " + qty + " — Rs. " +
     (product.price * qty).toLocaleString("en-PK");

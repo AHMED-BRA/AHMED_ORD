@@ -425,3 +425,16 @@ img {
 }
 
 /* ===== END PREMIUM THEME ===== */
+header,
+header a,
+header nav a,
+header button,
+header .cart,
+header #cart-count {
+  color: #171717 !important;
+}
+
+header a:hover,
+header nav a:hover {
+  color: #b8860b !important;
+}

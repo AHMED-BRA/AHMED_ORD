@@ -138,8 +138,8 @@ const minusBtn = document.getElementById("minusBtn");
 function updateOrder() {
   if (!product) {
     summary.textContent = "Perfume not found. Return to the store.";
-    unitPrice.textContent = "Rs. 0";
-    totalAmount.textContent = "Rs. 0";
+    unitPrice.value = "Rs. 0";
+    totalAmount.value = "Rs. 0";
     return;
   }
 
